@@ -206,21 +206,29 @@ body:not([data-theme=vintage]):not(.norelief) .mtn,body:not([data-theme=vintage]
 body[data-theme=atlas] .ccsw{left:18px;top:148px}
 @media (max-width:760px){.ccsw{left:10px;right:auto;top:116px;padding:2px}body[data-theme=atlas] .ccsw{top:116px}.ccsw button{padding:5px 8px;font-size:11.5px}.ccsw .l{display:none}.ccsw .s{display:inline}body[data-theme=atlas] .ccsw{left:10px}}
 .crumbs{position:absolute;left:18px;top:110px;z-index:4;display:flex;align-items:center;gap:2px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 6px;box-shadow:var(--shadow);font-size:12.5px;max-width:calc(100% - 110px);overflow:hidden;white-space:nowrap}
-.seenp{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:6}
-.seenp>button{display:flex;flex-direction:column;align-items:center;gap:1px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);color:var(--ink);font:600 12px/1.1 inherit;padding:7px 8px;cursor:pointer;min-width:40px}
-.seenp>button .ey{font-size:15px}.seenp>button[aria-expanded=true]{border-color:var(--wine,#8c1c3e)}
-.seenl{position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);width:270px;max-height:min(60vh,420px);display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.seenp{position:fixed;left:18px;top:160px;z-index:6}
+.seenp>button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;width:44px;min-height:50px;border:2px solid #fff;border-radius:14px;outline:1.5px solid rgba(140,28,62,.55);outline-offset:1px;color:#fff;background:linear-gradient(145deg,#c93d68,#7a1a3a);box-shadow:0 6px 18px rgba(140,28,62,.4),inset 0 1px 0 rgba(255,255,255,.25);font:700 13px/1.1 inherit;padding:6px 0;cursor:pointer}
+.seenp>button:hover{transform:translateY(-1px);outline-color:#c93d68;outline-width:2.5px}
+.seenp>button:focus-visible{outline:3px solid #f2b632;outline-offset:2px}
+.seenp>button::after{content:attr(data-lb);position:absolute;left:54px;top:50%;transform:translateY(-50%);background:var(--ink);color:var(--paper);font-size:12px;font-weight:600;padding:5px 9px;border-radius:7px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s}
+.seenp>button:hover::after{opacity:1}
+.seenp>button[aria-expanded=true]::after{display:none}
+.seenp>button{position:relative}
+.seenp>button .ey{font-size:15px;filter:grayscale(1) brightness(2.2)}
+.seenp>button[aria-expanded=true]{background:#fff;color:#8c1c3e;box-shadow:0 0 0 2.5px #c93d68,0 6px 18px rgba(140,28,62,.3)}
+.seenp>button[aria-expanded=true] .ey{filter:none}
+.seenl{position:absolute;left:calc(100% + 8px);top:0;width:270px;max-height:min(60vh,420px);display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
 .seenl[hidden]{display:none}
 .seenl .sh{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-bottom:1px solid var(--line);font-size:13px}
 .seenl .sh button{border:0;background:none;color:var(--muted);font-size:18px;line-height:1;cursor:pointer;padding:0 2px}
-#seenit{overflow-y:auto;flex:1}
+#seenit{overflow-y:auto;flex:1 1 auto;min-height:0}
 #seenit button{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);font:inherit;font-size:13px;padding:8px 12px;cursor:pointer}
 #seenit button:hover,#seenit button.cur{background:var(--bg)}
 #seenit small{display:block;color:var(--muted);font-size:11.5px}
-.seenl .sclr{border:0;background:none;color:var(--muted);font:inherit;font-size:12px;padding:8px 12px;cursor:pointer;text-align:left}
+.seenl .sclr{border:0;border-top:1px solid var(--line);background:var(--card);flex:none;color:var(--muted);font:inherit;font-size:12px;padding:8px 12px;cursor:pointer;text-align:left}
 .seenl .sclr:hover{color:var(--ink)}
 body:has(#sheet[data-s=full]) .seenp{display:none}
-@media (max-width:760px){.seenp{left:10px;top:212px;transform:none;z-index:20}.seenl{top:0;transform:none;width:min(270px,calc(100vw - 80px));max-height:45vh}}
+@media (max-width:760px){.seenp{z-index:20}.seenl{width:min(270px,calc(100vw - 80px));max-height:45vh}}
 .crumbs button{border:0;background:none;font:inherit;color:var(--ink);cursor:pointer;padding:3px 7px;border-radius:999px;max-width:220px;overflow:hidden;text-overflow:ellipsis}
 .crumbs button:hover{background:var(--paper2)}.crumbs button.cur{font-weight:700;cursor:default}.crumbs button.cur:hover{background:none}
 .crumbs .sep{color:var(--muted)}
@@ -577,7 +585,7 @@ body.dark[data-theme=atlas] .nb{stroke:#2c2930}
     <div class="mtitle"><span class="k">Harta vinului din</span><b>ROMÂNIA</b></div>
     <div class="paper"></div>
     <div class="crumbs" id="crumbs"></div>
-    <div class="seenp" id="seenp" hidden><button id="seenb" aria-expanded="false" aria-controls="seenl" title="Văzute recent"><span class="ey">👁</span><b id="seenn">0</b></button><div class="seenl" id="seenl" hidden><div class="sh"><b>Văzute recent</b><button id="seenx" aria-label="Închide">×</button></div><div id="seenit"></div><button class="sclr" id="seenc">Șterge istoricul</button></div></div>
+    <div class="seenp" id="seenp" hidden><button id="seenb" aria-expanded="false" aria-controls="seenl" aria-label="Văzute recent" data-lb="Văzute recent"><span class="ey">👁</span><b id="seenn">0</b></button><div class="seenl" id="seenl" hidden><div class="sh"><b>Văzute recent</b><button id="seenx" aria-label="Închide">×</button></div><div id="seenit"></div><button class="sclr" id="seenc">Șterge istoricul</button></div></div>
     <div class="ccsw" id="ccsw" role="tablist" aria-label="Țara"><button data-cc="ro"><span class="l">🇷🇴 România</span><span class="s">RO</span></button><button data-cc="md"><span class="l">🇲🇩 Moldova</span><span class="s">MD</span></button><button data-cc="bg"><span class="l">🇧🇬 Bulgaria</span><span class="s">BG</span></button><button data-cc="hu"><span class="l">🇭🇺 Ungaria</span><span class="s">HU</span></button><button data-cc="all"><span class="l">Toate</span><span class="s">Toate</span></button></div>
     <div class="themes" id="themes" role="tablist" aria-label="Stilul hărții"><button data-t="modern">Modern</button><button data-t="atlas">Atlas</button><button data-t="vintage">Vintage</button><button class="lng" id="lang" title="English / Română" aria-label="Language">EN</button><button class="dm" id="dmode" title="Mod întunecat / luminos" aria-label="Mod întunecat">🌙</button></div>
     <svg class="inset" id="inset" viewBox="0 0 150 118"></svg>
@@ -1148,11 +1156,14 @@ const SEEN=new Set((()=>{try{return JSON.parse(localStorage.getItem("hv-seen")||
 function markSeen(id){SEEN.delete(id);SEEN.add(id);try{localStorage.setItem("hv-seen",JSON.stringify([...SEEN]))}catch(e){}paintSeen()}
 function paintSeen(){if(typeof gM==="undefined")return;gM.selectAll("circle.mk").classed("seen",false);gSeen.selectAll("path.ck").remove();paintSeenPop();
   const s=document.getElementById("nseen");if(s)s.textContent=SEEN.size}
-function paintSeenPop(){const P=document.getElementById("seenp");if(!P)return;if(P.parentNode!==document.body)document.body.appendChild(P);const ids=[...SEEN].reverse().filter(id=>WINERIES.some(w=>w.id===id));
+function paintSeenPop(){const P=document.getElementById("seenp");if(!P)return;if(P.parentNode!==document.body)document.body.appendChild(P);placeSeen();const ids=[...SEEN].reverse().filter(id=>WINERIES.some(w=>w.id===id));
   P.hidden=!ids.length;document.getElementById("seenn").textContent=ids.length;if(!ids.length){closeSeen();return}
   const cur=view&&view.type==="winery"?view.id:null;
-  document.getElementById("seenit").innerHTML=ids.slice(0,30).map(id=>{const w=WINERIES.find(x=>x.id===id);return`<button data-id="${w.id}" class="${w.id===cur?"cur":""}"><span class="notr">${esc(w.n)}</span><small class="notr">${esc(w.loc.split(",")[0])}</small></button>`}).join("");
+  document.getElementById("seenit").innerHTML=ids.slice(0,30).map(id=>{const w=WINERIES.find(x=>x.id===id);return`<button data-id="${w.id}" class="${w.id===cur?"cur":""}"><span class="notr">${esc(w.n)}</span>${(()=>{const s=(w.loc||"").split(",")[0].trim();return s&&s!=="—"?`<small class="notr">${esc(s)}</small>`:""})()}</button>`}).join("");
   document.querySelectorAll("#seenit [data-id]").forEach(b=>b.onclick=()=>{showWinery(b.dataset.id,true);if(window.innerWidth<=760)closeSeen()})}
+function placeSeen(){const P=document.getElementById("seenp");if(!P)return;let ref=null;for(const id of ["crumbs","ccsw"]){const e=document.getElementById(id)||document.querySelector("."+id);if(e&&e.offsetParent!==null&&e.getBoundingClientRect().height){ref=e.getBoundingClientRect();break}}
+  if(ref){P.style.left=ref.left+"px";P.style.top=(ref.bottom+10)+"px";const l=document.getElementById("seenl");if(l)l.style.maxHeight=Math.max(200,Math.min(420,innerHeight-ref.bottom-30))+"px"}}
+window.addEventListener("resize",()=>placeSeen());
 function closeSeen(){const l=document.getElementById("seenl"),b=document.getElementById("seenb");if(l)l.hidden=true;if(b)b.setAttribute("aria-expanded","false")}
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("#seenb");if(b){const l=document.getElementById("seenl");l.hidden=!l.hidden;b.setAttribute("aria-expanded",String(!l.hidden));if(!l.hidden)paintSeenPop();return}
   if(e.target.closest&&e.target.closest("#seenx")){closeSeen();return}
